@@ -2,32 +2,33 @@
 // クラス名:funcBase
 // 機能概要:手洗い案内システム各フェイズの基底クラス
 */
+
 class funcBase {
-  constructor(flagment, elem, debug = false) {
+  constructor(effectElem, ponement, debug = false) {
     /* コンストラクタ */
-    this.vl = flagment.vl; //距離センサ　インスタンス
-    this.flow = flagment.flow; //水流センサ　インスタンス
-    this.cam = flagment.webcam; //Webカメラ　インスタンス
+    this.ponement = ponement;
     this.isStart = false; //おのおののフェイズがフェイズ管理フラグ変更後、1度でも呼び出しされたか
     this.funcStartTime = undefined; //おのおののフェイズが呼び出しされた時間
-    this.effectElem = elem; //おのおののフェイズのもつ演出用要素
+    this.effectElem = effectElem; //おのおののフェイズのもつ演出用要素
     this.effectDisplaied = false; //おのおののフェイズの演出完了時True
     this.effectTimeourId = 0; //おのおののフェイズの演出完了時にeffectDisplaiedをtrueにする為のsetTimeoutのID
+
+    this.debug = debug;
   }
 
   //水が流れているかどうかを返す
   isWaterFlow() {
-    return this.flow.isFlow();
+    return this.ponement.isWaterFlow();
   }
 
   //距離センサが範囲に入っているかどうかを返す
   isRangeIn() {
-    return this.vl.isRangeIn();
+    return this.ponement.isRangeIn();
   }
 
   //Webカメラが認識できてるかどうかを返す
   isCamGetCurrentPosition() {
-    return this.cam.isTracked();
+    return this.ponement.isCamGetCurrentPosition();
   }
 
   //フェイズ処理クラスの実行開始（start()）した時間

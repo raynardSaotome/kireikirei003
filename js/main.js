@@ -45,7 +45,7 @@ window.onload = () => {
       .then(function (devices) {
         // 成功時
         devices.forEach(function (device) {
-          // デバイスごとの処理
+          // カメラデバイスごとの処理
           for (var i = 0; i < deviceNames.devices.length; i++) {
             var pattern = deviceNames.devices[i]["name"];
             if (device.label.match(pattern)) {
@@ -86,13 +86,7 @@ window.onload = () => {
       flag.webcam = new webcamDummy(video, canvas, constraints, true);
     } else {
       document.getElementById("btcam").style.visibility = "hidden";
-      flag.webcam = new webcam(
-        video,
-        canvas,
-        constraints,
-        webcamPostponement,
-        false
-      );
+      flag.webcam = new webcam(video, canvas, constraints, false);
     }
 
     //距離センサ
@@ -345,7 +339,7 @@ window.onload = () => {
   ///センサー類オブジェクトの宣言
   var flagment = init();
 
-  // デバッグ用センサー値表示用要素の取得
+  // デバッグ用センサー元クラス値表示用要素の取得
   (async () => {
     var dist = document.getElementById("ddist");
     await flagment.vl.start(dist);
@@ -363,42 +357,62 @@ window.onload = () => {
     })()
   );
 
-  // 各フェイズ処理用クラスの宣言　第二引数は演出用要素
-  const _waiting = new waiting(flagment, undefined);
-  const _handWashReady = new handWashReady(
+  // デバッグ用funcBaseセンサークラス値表示用要素の取得
+  var funcBasevl = document.getElementById("ddistfuncBase");
+  var funcBaseflow = document.getElementById("fdistfuncBase");
+  var funcBasecam = document.getElementById("cdistfuncBase");
+
+  const ponement = new ponementChacker(
     flagment,
+    funcBasevl,
+    funcBaseflow,
+    funcBasecam,
+    true
+  );
+
+  ponement.start();
+
+  // 各フェイズ処理用クラスの宣言　第二引数は演出用要素
+  const _waiting = new waiting(undefined, ponement, true);
+  const _handWashReady = new handWashReady(
     (() => {
       var elem = document.getElementById("elemHandWashReady");
       return elem;
-    })()
+    })(),
+    ponement,
+    true
   );
   const _handWashing = new handWashing(
-    flagment,
     (() => {
       var elem = document.getElementById("elemHandWashing");
       return elem;
-    })()
+    })(),
+    ponement,
+    true
   );
   const _handWashSuccess = new handWashSuccess(
-    flagment,
     (() => {
       var elem = document.getElementById("elemHandWashSuccess");
       return elem;
-    })()
+    })(),
+    ponement,
+    true
   );
   const _handWashFault = new handWashFault(
-    flagment,
     (() => {
       var elem = document.getElementById("elemHandWashFault");
       return elem;
-    })()
+    })(),
+    ponement,
+    true
   );
   const _stopFlow = new stopFlow(
-    flagment,
     (() => {
       var elem = document.getElementById("elemStopFlow");
       return elem;
-    })()
+    })(),
+    ponement,
+    true
   );
 
   // ループ用関数の呼び出し

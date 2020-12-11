@@ -4,8 +4,8 @@
 */
 
 class handWashReady extends funcBase {
-  constructor(flagment, elem, debug = false) {
-    super(flagment, elem, debug);
+  constructor(effectElem, ponement, debug = false) {
+    super(effectElem, ponement, (debug = false));
     this.OutOfRangeStartTime = undefined;
   }
   //フェイズ開始

@@ -1,13 +1,13 @@
-let HandWashing_TimeRangeMin = 5000; // 手洗い最小時間　これより短いと失敗
-let HandWashing_OverTime = 10000; //　手洗い最大時間　これより長いと水停止
+let HandWashing_TimeRangeMin = 6000; // 手洗い最小時間　これより短いと失敗
+let HandWashing_OverTime = 12000; //　手洗い最大時間　これより長いと水停止
 /*
 // クラス名:handWashing
 // 機能概要:手洗い中フェイズ
 */
 class handWashing extends funcBase {
-  constructor(flagment, elem, debug = false) {
+  constructor(effectElem, ponement, debug = false) {
     /* コンストラクタ */
-    super(flagment, elem, debug);
+    super(effectElem, ponement, (debug = false));
     this.handWashingStartTime = undefined;
   }
 

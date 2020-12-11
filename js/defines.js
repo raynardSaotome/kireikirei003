@@ -1,5 +1,9 @@
 //Webカメラトラッキング後範囲外許容時間
-const webcamPostponement = 5000;
+const webcamPostponement = 3000;
+//距離センサ後範囲外許容時間
+const vlRangePostponement = 2000;
+//水流センサ後範囲外許容時間
+const flowISFlowPostponement = 1000;
 
 //優先Webカメラ
 const useWebcamDevice = {

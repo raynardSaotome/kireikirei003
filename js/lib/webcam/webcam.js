@@ -1,13 +1,17 @@
-//const webcamTrackingInterval = 20;
+/*
+// 処理名:webcam
+// 機能概要:手洗い案内システムカメラ
+*/
+let WebcamAntiChatteringTrackout = 600;
+
 class webcam {
   constructor(
-    videoElem,
-    canvasElem,
+    videoElem, //ビデオ要素
+    canvasElem, //キャンバス用要素（トラッキング結果描画用
     constraints = {
       audio: false,
       video: { width: { exact: 320 }, height: { exact: 240 } }
-    },
-    postponement = 3000,
+    }, // Webカメラ設定
     debug = false
   ) {
     /* コンストラクタ */
@@ -18,7 +22,6 @@ class webcam {
     this.track = new clm.tracker({
       useWebGL: true
     });
-    this.postponement = postponement;
     this.trackingLimiitTime = undefined;
     this._isTracked = false;
     this.debug = debug;
@@ -69,7 +72,8 @@ class webcam {
         if (this.trackingLimiitTime === undefined) {
           this.trackingLimiitTime = new Date();
           this.trackingLimiitTime.setMilliseconds(
-            this.trackingLimiitTime.getMilliseconds() + this.postponement
+            this.trackingLimiitTime.getMilliseconds() +
+              WebcamAntiChatteringTrackout
           );
         } else if (new Date().getTime() >= this.trackingLimiitTime.getTime()) {
           this._isTracked = false;
@@ -106,14 +110,8 @@ class webcam {
 
 //テスト用センサー値ダミークラス
 class webcamDummy extends webcam {
-  constructor(
-    videoElem,
-    canvasElem,
-    constraints,
-    postponement = 3000,
-    debug = false
-  ) {
-    super(videoElem, canvasElem, constraints, postponement, debug);
+  constructor(videoElem, canvasElem, constraints, debug = false) {
+    super(videoElem, canvasElem, constraints, debug);
     this.debugelem = undefined;
     this.debugBtcam = document.getElementById("btcam");
     this.debugret = false;
