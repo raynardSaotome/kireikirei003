@@ -1,5 +1,5 @@
 let ponementChackerRangeInInterval = 20;
-let ponementChackerWaterFlowInterval = 20;
+let ponementChackerWaterFlowInterval = 10;
 let ponementChackerTrackedInterval = 20;
 
 class ponementChacker {

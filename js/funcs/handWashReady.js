@@ -4,15 +4,22 @@
 */
 
 class handWashReady extends funcBase {
-  constructor(effectElem, ponement, debug = false) {
+  constructor(effectElem, ponement, soundElems, debug = false) {
     super(effectElem, ponement, (debug = false));
     this.OutOfRangeStartTime = undefined;
+    this.soundElems = soundElems;
   }
   //フェイズ開始
   start(effectTime = 3000) {
     //演出
     $(document.getElementById("elemHandWashReady_canvas")).removeClass("fade");
     $(document.getElementById("elemHandWashReady_canvas")).addClass("blink2");
+
+    this.soundElems.list.forEach((element) => {
+      if (element.chp === CHAPT_handWashReady) {
+        element.elem.play();
+      }
+    });
 
     super.start(effectTime);
   }
@@ -22,6 +29,13 @@ class handWashReady extends funcBase {
     $(document.getElementById("elemHandWashReady_canvas")).removeClass(
       "blink2"
     );
+
+    this.soundElems.list.forEach((element) => {
+      if (element.chp === CHAPT_handWashReady) {
+        element.elem.pause();
+        element.elem.currentTime = 0;
+      }
+    });
 
     super.stop();
   }

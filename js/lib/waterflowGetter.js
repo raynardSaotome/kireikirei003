@@ -2,8 +2,8 @@ let WATERFLOWSIGPORT = 18;
 let WATERFLOWFLAG = 1;
 let WATERFLOWPALUSECNT = 2;
 
-let WATERFLOWGetParamInterval = 1;
-let WATERFLOWIsOnLimit = 700;
+let WATERFLOWGetParamInterval = 5;
+let WATERFLOWIsOnLimit = 450;
 
 const waterflowGetter = class {
   constructor(pin, flag, debug = false) {

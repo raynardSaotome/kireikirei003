@@ -37,80 +37,85 @@
     <script src="./js/main.js"></script>
   </head>
   <body>
-    <body>
-      <div class="wrapper">
-        <video
-          id="video"
-          style="display: none;"
-          class="video"
-          autoplay
-          playsinline="true"
-        ></video>
+    <div class="wrapper">
+      <video
+        id="video"
+        style="display: none;"
+        class="video"
+        autoplay
+        playsinline="true"
+      ></video>
+      <canvas
+        id="overlay"
+        style="transform: rotateY(180deg);"
+        class="overlay"
+      ></canvas>
+      <div id="elemHandWashReady" class="chapters fade">
         <canvas
-          id="overlay"
-          style="transform: rotateY(180deg);"
-          class="overlay"
+          id="elemHandWashReady_canvas"
+          width="1920"
+          height="1080"
         ></canvas>
-        <div id="elemHandWashReady" class="chapters fade">
-          <canvas
-            id="elemHandWashReady_canvas"
-            width="1920"
-            height="1080"
-          ></canvas>
-        </div>
-        <div id="elemHandWashing" class="chapters fade">
-          <canvas
-            id="elemHandWashing_canvas"
-            width="1920"
-            height="1080"
-          ></canvas>
-        </div>
-        <div id="elemHandWashSuccess" class="chapters fade">
-          <canvas id="kirakira_canvas" width="1920" height="1080"></canvas>
-        </div>
-        <div id="elemHandWashFault" class="chapters fade">
-          <canvas
-            id="elemHandWashFault_canvas"
-            width="1920"
-            height="1080"
-          ></canvas>
-        </div>
-        <div id="elemStopFlow" class="chapters fade">
-          <canvas id="elemStopFlow_canvas" width="1920" height="1080"></canvas>
-        </div>
-        <div id="debug">
-          <table>
-            <tr>
-              <td>chapter</td>
-              <td id="debugChpt"></td>
-            </tr>
-            <tr>
-              <td>センサ</td>
-              <td>元クラス</td>
-              <td>ponementChack</td>
-            </tr>
-            <tr>
-              <td>flow(水流)</td>
-              <td id="fdist"></td>
-              <td id="fdistfuncBase"></td>
-            </tr>
-            <tr>
-              <td>isRangeIn(距離)</td>
-              <td id="ddist"></td>
-              <td id="ddistfuncBase"></td>
-              <td id="ddistDistance"></td>
-            </tr>
-            <tr>
-              <td>cam(カメラ)</td>
-              <td id="cdist"></td>
-              <td id="cdistfuncBase"></td>
-            </tr>
-          </table>
-          <button id="btflow">水流スイッチ</button>
-          <button id="btvl">距離センサ</button>
-          <button id="btcam">カメラ認識</button>
-        </div>
       </div>
-    </body>
+      <div id="elemHandWashing" class="chapters fade">
+        <canvas id="elemHandWashing_canvas" width="1920" height="1080"></canvas>
+      </div>
+      <div id="elemHandWashSuccess" class="chapters fade">
+        <canvas id="kirakira_canvas" width="1920" height="1080"></canvas>
+      </div>
+      <div id="elemHandWashFault" class="chapters fade">
+        <canvas
+          id="elemHandWashFault_canvas"
+          width="1920"
+          height="1080"
+        ></canvas>
+      </div>
+      <div id="elemStopFlow" class="chapters fade">
+        <canvas id="elemStopFlow_canvas" width="1920" height="1080"></canvas>
+      </div>
+      <div id="debug">
+        <table>
+          <tr>
+            <td>chapter</td>
+            <td id="debugChpt"></td>
+          </tr>
+          <tr>
+            <td>センサ</td>
+            <td>元クラス</td>
+            <td>ponementChack</td>
+          </tr>
+          <tr>
+            <td>flow(水流)</td>
+            <td id="fdist"></td>
+            <td id="fdistfuncBase"></td>
+          </tr>
+          <tr>
+            <td>isRangeIn(距離)</td>
+            <td id="ddist"></td>
+            <td id="ddistfuncBase"></td>
+            <td id="ddistDistance"></td>
+          </tr>
+          <tr>
+            <td>cam(カメラ)</td>
+            <td id="cdist"></td>
+            <td id="cdistfuncBase"></td>
+          </tr>
+        </table>
+        <button id="btflow">水流スイッチ</button>
+        <button id="btvl">距離センサ</button>
+        <button id="btcam">カメラ認識</button>
+      </div>
+      <div id="soundlist">
+        <audio id="detect">
+          <source src="./sound/detect.wav" />
+        </audio>
+        <audio id="success">
+          <source src="./sound/success.wav" />
+        </audio>
+        <audio id="fault">
+          <source src="./sound/fault.wav" />
+        </audio>
+      </div>
+    </div>
   </body>
 </html>

@@ -2,12 +2,6 @@
 // 処理名:main
 // 機能概要:手洗い案内システムメイン
 */
-let CHAPT_waiting = 0; // フェイズフラグ用定数　待ち受け
-let CHAPT_handWashReady = 1; // フェイズフラグ用定数　手洗い準備
-let CHAPT_handWashing = 2; // フェイズフラグ用定数　手洗い中
-let CHAPT_handWashSuccess = 3; // フェイズフラグ用定数　手洗い成功
-let CHAPT_handWashFault = 4; // フェイズフラグ用定数　手洗い失敗
-let CHAPT_stopFlow = 5; // フェイズフラグ用定数　水停止
 let HandWashReady_outOfRange_Wainting = 7000; // 手洗い準備フェイズ時のセンサー範囲外許容値（ミリ秒）
 let HandWashSuccessEffectDispTime = 10000; // 手洗い成功演出時間
 let HandWashFaultEffectDispTime = 10000; // 手洗い失敗演出時間
@@ -112,6 +106,18 @@ window.onload = () => {
     }
 
     return flag;
+  }
+
+  //音声周り初期化
+  function soundInit() {
+    var soundElems = {
+      list: [
+        { chp: CHAPT_handWashReady, elem: document.getElementById("detect") },
+        { chp: CHAPT_handWashFault, elem: document.getElementById("fault") },
+        { chp: CHAPT_handWashSuccess, elem: document.getElementById("success") }
+      ]
+    };
+    return soundElems;
   }
 
   // 待ち受け処理関数
@@ -339,6 +345,9 @@ window.onload = () => {
   ///センサー類オブジェクトの宣言
   var flagment = init();
 
+  //音声周り要素の取得
+  var soundElems = soundInit();
+
   // デバッグ用センサー元クラス値表示用要素の取得
   (async () => {
     var dist = document.getElementById("ddist");
@@ -380,6 +389,7 @@ window.onload = () => {
       return elem;
     })(),
     ponement,
+    soundElems,
     true
   );
   const _handWashing = new handWashing(
@@ -396,6 +406,7 @@ window.onload = () => {
       return elem;
     })(),
     ponement,
+    soundElems,
     true
   );
   const _handWashFault = new handWashFault(
@@ -404,6 +415,7 @@ window.onload = () => {
       return elem;
     })(),
     ponement,
+    soundElems,
     true
   );
   const _stopFlow = new stopFlow(
