@@ -18,6 +18,14 @@
   opacity: 0.75;
 }
 
+#elemHandWashSuccess {
+  background-image: url("../img/successbgrose001.png");
+}
+
+#elemHandWashReady {
+  background-image: url("../img/handwashreadybg.png");
+}
+
 #elemHandWashReady_canvas {
   background-image: url("../img/handwashready.png");
 }
@@ -32,6 +40,41 @@
 
 #elemStopFlow_canvas {
   background-image: url("../img/handwashstopflow.png");
+}
+
+#elemStopFlow_canvas {
+  background-image: url("../img/handwashstopflow.png");
+}
+
+#elemStopFlow {
+  background-image: url("../img/handwashstopflowbg.png");
+}
+
+@keyframes blink {
+  0% {
+    visibility: hidden;
+    opacity: 0.2;
+  }
+
+  25% {
+    visibility: visible;
+    opacity: 0.4;
+  }
+
+  50% {
+    visibility: visible;
+    opacity: 0.75;
+  }
+
+  75% {
+    visibility: visible;
+    opacity: 0.4;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0.2;
+  }
 }
 
 @keyframes fade-in {
@@ -76,6 +119,18 @@
 .fout {
   animation-name: fade-out;
   animation-duration: 0.5s;
+}
+
+.blink {
+  animation-name: blink;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.blink2 {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 #ddistDistance::after {

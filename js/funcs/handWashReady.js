@@ -11,7 +11,19 @@ class handWashReady extends funcBase {
   //フェイズ開始
   start(effectTime = 3000) {
     //演出
+    $(document.getElementById("elemHandWashReady_canvas")).removeClass("fade");
+    $(document.getElementById("elemHandWashReady_canvas")).addClass("blink2");
+
     super.start(effectTime);
+  }
+
+  stop() {
+    $(document.getElementById("elemHandWashReady_canvas")).addClass("fade");
+    $(document.getElementById("elemHandWashReady_canvas")).removeClass(
+      "blink2"
+    );
+
+    super.stop();
   }
 
   //距離＆カメラの範囲から最初に外れた時間

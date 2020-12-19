@@ -30,7 +30,7 @@ window.onload = () => {
     var device = undefined;
 
     var resolutionWidth = 1280;
-    var resolutionHeight = 760;
+    var resolutionHeight = 720;
 
     constraints = {
       audio: false,
@@ -108,7 +108,7 @@ window.onload = () => {
       );
     } else {
       document.getElementById("btflow").style.visibility = "hidden";
-      flag.flow = new waterflowGetter(WATERFLOWSIGPORT, WATERFLOWFLAG, true);
+      flag.flow = new waterflowGetter(WATERFLOWSIGPORT, WATERFLOWFLAG, false);
     }
 
     return flag;

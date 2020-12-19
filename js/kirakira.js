@@ -6,7 +6,7 @@ const kira = function (window) {
         main: { id: $("#elemHandWashSuccess") },
         canvas: {
           id: $("#kirakira_canvas"),
-          size: { width: 1280, height: 720 } // !!画像サイズと一致させる!!
+          size: { width: 1920, height: 1080 } // !!画像サイズと一致させる!!
         },
         velocity: { x: 0, y: 0 },
         circle: new Shape(),
@@ -97,14 +97,4 @@ const kira = function (window) {
   };
 
   $.canvas.init();
-
-  /*
-  window.addEventListener(
-    "load",
-    function (e) {
-      $.canvas.init();
-    },
-    false
-  );
-  */
 };
